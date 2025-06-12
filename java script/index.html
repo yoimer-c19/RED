@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVA: Introducción a HTML, CSS y JavaScript</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Encabezado */
+        header {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        header .container {
+            background: transparent;
+            color: white;
+            box-shadow: none;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        
+        h2 {
+            color: #2980b9;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
+            margin-top: 40px;
+        }
+        
+        h3 {
+            color: #2c3e50;
+        }
+        
+        nav {
+            background-color: #2c3e50;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin: 0 15px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: #3498db;
+        }
+        
+        /* Contenido */
+        .code-example {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        
+        pre {
+            margin: 0;
+        }
+        
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #333;
+        }
+        
+        .interactive-demo {
+            background-color: #f0f7fd;
+            border: 1px solid #d0e3f0;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .interactive-demo button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .interactive-demo button:hover {
+            background-color: #2980b9;
+        }
+        
+        .exercise {
+            background-color: #f9f9f9;
+            border-left: 4px solid #2ecc71;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .exercise button {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .exercise button:hover {
+            background-color: #27ae60;
+        }
+        
+        .resource-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .resource-card h4 {
+            margin-top: 0;
+            color: #3498db;
+        }
+        
+        .resource-card a {
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .resource-card a:hover {
+            text-decoration: underline;
+        }
+        
+        .tip-box {
+            background-color: #fffde7;
+            border-left: 4px solid #ffd600;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .warning-box {
+            background-color: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .tab-container {
+            margin: 20px 0;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab-button {
+            padding: 10px 20px;
+            background-color: #f1f1f1;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .tab-button.active {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-top: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        footer .container {
+            background: transparent;
+            box-shadow: none;
+        }
+        
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                margin: 5px 0;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Introducción a HTML, CSS y JavaScript</h1>
+            <p>Aprende los fundamentos del desarrollo web con este completo Objeto Virtual de Aprendizaje</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#introduccion">Introducción</a></li>
+                <li><a href="#html">HTML</a></li>
+                <li><a href="#css">CSS</a></li>
+                <li><a href="#javascript">JavaScript</a></li>
+                <li><a href="#ejercicios">Ejercicios</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <section id="introduccion">
+            <h2>Introducción al Desarrollo Web</h2>
+            <p>El desarrollo web moderno se basa en tres tecnologías fundamentales que trabajan juntas para crear experiencias interactivas y atractivas en internet.</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="openTab(event, 'html-tab-intro')">HTML</button>
+                    <button class="tab-button" onclick="openTab(event, 'css-tab-intro')">CSS</button>
+                    <button class="tab-button" onclick="openTab(event, 'js-tab-intro')">JavaScript</button>
+                </div>
+                
+                <div id="html-tab-intro" class="tab-content active">
+                    <h3>HTML - La estructura</h3>
+                    <p>HTML (HyperText Markup Language) es el esqueleto de toda página web. Define la estructura y el contenido mediante un sistema de etiquetas.</p>
+                    <ul>
+                        <li>Creado por Tim Berners-Lee en 1991</li>
+                        <li>Versión actual: HTML5 (desde 2014)</li>
+                        <li>Es un estándar mantenido por el W3C</li>
+                    </ul>
+                </div>
+                
+                <div id="css-tab-intro" class="tab-content">
+                    <h3>CSS - El diseño</h3>
+                    <p>CSS (Cascading Style Sheets) controla la presentación visual de los documentos HTML, permitiendo separar el contenido de su apariencia.</p>
+                    <ul>
+                        <li>Propuesto por Håkon Wium Lie en 1994</li>
+                        <li>Versión actual: CSS3 (modular)</li>
+                        <li>Permite diseños responsivos para diferentes dispositivos</li>
+                    </ul>
+                </div>
+                
+                <div id="js-tab-intro" class="tab-content">
+                    <h3>JavaScript - La interactividad</h3>
+                    <p>JavaScript es un lenguaje de programación que permite crear contenido dinámico y responder a las acciones del usuario.</p>
+                    <ul>
+                        <li>Creado por Brendan Eich en 1995</li>
+                        <li>Estándar ECMAScript (versión actual: ES2022)</li>
+                        <li>No debe confundirse con Java (son lenguajes diferentes)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="tip-box">
+                <h3>¿Sabías que?</h3>
+                <p>Estas tres tecnologías son interpretadas por el navegador web del cliente, lo que significa que no necesitan compilación previa y cualquier persona puede ver el código fuente de cualquier página web.</p>
+            </div>
+        </section>
+        
+        <section id="html">
+            <h2>HTML: La estructura de la web</h2>
+            <p>HTML es el lenguaje fundamental para crear páginas web. Consiste en una serie de elementos que definen la estructura y el significado del contenido.</p>
+            
+            <h3>Conceptos básicos</h3>
+            <ul>
+                <li><strong>Elementos:</strong> Componentes básicos de HTML definidos por etiquetas (&lt;etiqueta&gt;contenido&lt;/etiqueta&gt;)</li>
+                <li><strong>Atributos:</strong> Configuraciones adicionales para elementos (ej: &lt;a href="..."&gt;)</li>
+                <li><strong>Estructura básica:</strong> Doctype, html, head (metadatos), body (contenido visible)</li>
+                <li><strong>Semántica:</strong> Uso de elementos que describen su contenido (header, nav, section, article, footer)</li>
+            </ul>
+            
+            <h3>Elementos HTML esenciales</h3>
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                <thead>
+                    <tr style="background-color: #3498db; color: white;">
+                        <th style="padding: 10px; text-align: left;">Elemento</th>
+                        <th style="padding: 10px; text-align: left;">Descripción</th>
+                        <th style="padding: 10px; text-align: left;">Ejemplo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;">&lt;h1&gt;-&lt;h6&gt;</td>
+                        <td style="padding: 10px;">Encabezados</td>
+                        <td style="padding: 10px;"><code>&lt;h1&gt;Título principal&lt;/h1&gt;</code></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;">&lt;p&gt;</td>
+                        <td style="padding: 10px;">Párrafo</td>
+                        <td style="padding: 10px;"><code>&lt;p&gt;Texto de ejemplo.&lt;/p&gt;</code></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;">&lt;a&gt;</td>
+                        <td style="padding: 10px;">Enlace</td>
+                        <td style="padding: 10px;"><code>&lt;a href="https://ejemplo.com"&gt;Enlace&lt;/a&gt;</code></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;">&lt;img&gt;</td>
+                        <td style="padding: 10px;">Imagen</td>
+                        <td style="padding: 10px;"><code>&lt;img src="imagen.jpg" alt="Descripción"&gt;</code></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;">&lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</td>
+                        <td style="padding: 10px;">Listas</td>
+                        <td style="padding: 10px;"><code>&lt;ul&gt;&lt;li&gt;Item 1&lt;/li&gt;&lt;/ul&gt;</code></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;">&lt;div&gt;</td>
+                        <td style="padding: 10px;">Contenedor genérico</td>
+                        <td style="padding: 10px;"><code>&lt;div&gt;Contenido&lt;/div&gt;</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="warning-box">
+                <h3>¡Importante!</h3>
+                <p>Desde HTML5, se recomienda el uso de elementos semánticos como &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;section&gt;, &lt;article&gt;, &lt;aside&gt; y &lt;footer&gt; en lugar de &lt;div&gt; siempre que sea posible, ya que mejoran la accesibilidad y el SEO.</p>
+            </div>
+            
+            <h3>Estructura completa de un documento HTML</h3>
+            <div class="code-example">
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Título de la página&lt;/title&gt;
+    &lt;meta name="description" content="Descripción de la página"&gt;
+    &lt;link rel="stylesheet" href="estilos.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Mi Sitio Web&lt;/h1&gt;
+        &lt;nav&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="#inicio"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#servicios"&gt;Servicios&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    
+    &lt;main&gt;
+        &lt;section id="inicio"&gt;
+            &lt;h2&gt;Bienvenido&lt;/h2&gt;
+            &lt;p&gt;Contenido de la sección...&lt;/p&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+    
+    &lt;footer&gt;
+        &lt;p&gt;© 2023 Mi Sitio Web&lt;/p&gt;
+    &lt;/footer&gt;
+    
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+            
+            <div class="interactive-demo">
+                <h3>Editor HTML interactivo</h3>
+                <p>Experimenta con el código HTML y ve los cambios en tiempo real:</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <h4>Código HTML</h4>
+                        <textarea id="html-editor" style="width: 100%; height: 300px; font-family: monospace; padding: 10px; margin-bottom: 10px;">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mi Página</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenido a mi página</h1>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#acerca">Acerca de</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="inicio">
+            <h2>Sección Principal</h2>
+            <p>Este es un párrafo de ejemplo. Edítame para ver cambios.</p>
+            <img src="https://via.placeholder.com/400x200" alt="Imagen de ejemplo">
+        </section>
+    </main>
+    
+    <footer>
+        <p>© 2023 Mi Página Web</p>
+    </footer>
+</body>
+</html>
+                        </textarea>
+                        <button onclick="updateHtmlPreview()">Actualizar Vista Previa</button>
+                    </div>
+                    <div>
+                        <h4>Vista Previa</h4>
+                        <iframe id="html-preview" style="width: 100%; height: 300px; border: 1px solid #ddd; background-color: white;"></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="resource-card">
+                <h4>Recursos adicionales de HTML</h4>
+                <ul>
+                    <li><a href="https://developer.mozilla.org/es/docs/Web/HTML" target="_blank">Documentación HTML en MDN</a> - Guía completa de referencia</li>
+                    <li><a href="https://html.spec.whatwg.org/" target="_blank">Estándar HTML Living Standard</a> - Especificación oficial</li>
+                    <li><a href="https://www.w3schools.com/html/" target="_blank">Tutorial HTML en W3Schools</a> - Ejercicios prácticos</li>
+                    <li><a href="https://htmlreference.io/" target="_blank">HTML Reference</a> - Guía visual de elementos HTML</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="css">
+            <h2>CSS: Estilo y diseño web</h2>
+            <p>CSS (Cascading Style Sheets) es el lenguaje que controla la presentación visual de los documentos HTML, permitiendo crear diseños atractivos y responsivos.</p>
+            
+            <h3>Fundamentos de CSS</h3>
+            <ul>
+                <li><strong>Selectores:</strong> Patrones que identifican a qué elementos se aplicarán los estilos</li>
+                <li><strong>Propiedades:</strong> Características visuales que se pueden modificar (color, tamaño, posición, etc.)</li>
+                <li><strong>Valores:</strong> Configuraciones específicas para cada propiedad</li>
+                <li><strong>Cascada:</strong> Orden en que se aplican los estilos cuando hay conflictos</li>
+                <li><strong>Especificidad:</strong> Reglas que determinan qué estilos tienen prioridad</li>
+            </ul>
+            
+            <h3>Formas de aplicar CSS</h3>
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="openTab(event, 'inline-css')">Estilos en línea</button>
+                    <button class="tab-button" onclick="openTab(event, 'internal-css')">Hoja interna</button>
+                    <button class="tab-button" onclick="openTab(event, 'external-css')">Hoja externa</button>
+                </div>
+                
+                <div id="inline-css" class="tab-content active">
+                    <p>Estilos aplicados directamente en el elemento mediante el atributo <code>style</code>:</p>
+                    <div class="code-example">
+                        <pre><code>&lt;p style="color: blue; font-size: 16px;"&gt;
+    Este texto será azul y de 16px.
+&lt;/p&gt;</code></pre>
+                    </div>
+                    <p class="warning-box"><strong>No recomendado:</strong> Difícil de mantener y mezcla contenido con presentación.</p>
+                </div>
+                
+                <div id="internal-css" class="tab-content">
+                    <p>Estilos definidos en la sección <code>&lt;head&gt;</code> del documento HTML:</p>
+                    <div class="code-example">
+                        <pre><code>&lt;head&gt;
+    &lt;style&gt;
+        p {
+            color: blue;
+            font-size: 16px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;</code></pre>
+                    </div>
+                    <p><strong>Útil para:</strong> Estilos específicos de una sola página.</p>
+                </div>
+                
+                <div id="external-css" class="tab-content">
+                    <p>Estilos en archivo separado vinculado con <code>&lt;link&gt;</code>:</p>
+                    <div class="code-example">
+                        <pre><code>&lt;head&gt;
+    &lt;link rel="stylesheet" href="estilos.css"&gt;
+&lt;/head&gt;</code></pre>
+                        <p>Contenido de estilos.css:</p>
+                        <pre><code>p {
+    color: blue;
+    font-size: 16px;
+}</code></pre>
+                    </div>
+                    <p class="tip-box"><strong>Mejor práctica:</strong> Permite reutilizar estilos en múltiples páginas y mejora el rendimiento.</p>
+                </div>
+            </div>
+            
+            <h3>Selectores CSS comunes</h3>
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                <thead>
+                    <tr style="background-color: #3498db; color: white;">
+                        <th style="padding: 10px; text-align: left;">Selector</th>
+                        <th style="padding: 10px; text-align: left;">Ejemplo</th>
+                        <th style="padding: 10px; text-align: left;">Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;">Selector de elemento</td>
+                        <td style="padding: 10px;"><code>p { }</code></td>
+                        <td style="padding: 10px;">Selecciona todos los elementos &lt;p&gt;</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;">Selector de clase</td>
+                        <td style="padding: 10px;"><code>.clase { }</code></td>
+                        <td style="padding: 10px;">Selecciona elementos con class="clase"</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;">Selector de ID</td>
+                        <td style="padding: 10px;"><code>#id { }</code></td>
+                        <td style="padding: 10px;">Selecciona el elemento con id="id"</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;">Selector de atributo</td>
+                        <td style="padding: 10px;"><code>[type="text"] { }</code></td>
+                        <td style="padding: 10px;">Selecciona elementos con el atributo especificado</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;">Selector descendente</td>
+                        <td style="padding: 10px;"><code>div p { }</code></td>
+                        <td style="padding: 10px;">Selecciona todos los &lt;p&gt; dentro de &lt;div&gt;</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;">Selector de pseudo-clase</td>
+                        <td style="padding: 10px;"><code>a:hover { }</code></td>
+                        <td style="padding: 10px;">Selecciona elementos en estado específico</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Modelo de caja (Box Model)</h3>
+            <p>Concepto fundamental en CSS que describe cómo se representan visualmente los elementos:</p>
+            <div style="text-align: center; margin: 20px 0;">
+                <img src="https://mdn.mozillademos.org/files/16558/box-model-standard-small.png" alt="Modelo de caja CSS" style="max-width: 100%; height: auto;">
+                <p style="font-size: 0.9em; color: #666;">Diagrama del modelo de caja CSS (Fuente: MDN)</p>
+            </div>
+            <ul>
+                <li><strong>Contenido (content):</strong> El área donde se muestra el contenido (texto, imágenes, etc.)</li>
+                <li><strong>Relleno (padding):</strong> Espacio entre el contenido y el borde</li>
+                <li><strong>Borde (border):</strong> Línea que rodea el padding y el contenido</li>
+                <li><strong>Margen (margin):</strong> Espacio exterior que separa el elemento de otros elementos</li>
+            </ul>
+            
+            <div class="interactive-demo">
+                <h3>Editor CSS interactivo</h3>
+                <p>Experimenta con diferentes estilos CSS para el siguiente elemento:</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <h4>Código CSS</h4>
+                        <textarea id="css-editor" style="width: 100%; height: 200px; font-family: monospace; padding: 10px; margin-bottom: 10px;">
+#css-box {
+    width: 300px;
+    height: 200px;
+    background-color: #3498db;
+    color: white;
+    padding: 20px;
+    margin: 0 auto;
+    border: 5px solid #2980b9;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 18px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+                        </textarea>
+                        <button onclick="updateCssPreview()">Aplicar Estilos</button>
+                    </div>
+                    <div>
+                        <h4>Resultado</h4>
+                        <div id="css-box" style="display: flex; justify-content: center; align-items: center;">
+                            ¡Edita los estilos para ver cambios!
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <h4>Efectos CSS adicionales</h4>
+                    <button onclick="addCssEffect('hover')">Agregar Efecto Hover</button>
+                    <button onclick="addCssEffect('transform')">Agregar Transformación</button>
+                    <button onclick="addCssEffect('animation')">Agregar Animación</button>
+                </div>
+            </div>
+            
+            <h3>Flexbox y Grid: Diseños modernos</h3>
+            <p>CSS ofrece dos poderosos sistemas para crear diseños complejos y responsivos:</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="openTab(event, 'flexbox-tab')">Flexbox</button>
+                    <button class="tab-button" onclick="openTab(event, 'grid-tab')">CSS Grid</button>
+                </div>
+                
+                <div id="flexbox-tab" class="tab-content active">
+                    <p>Flexbox es un modelo unidimensional para distribuir elementos en una fila o columna:</p>
+                    <div class="code-example">
+                        <pre><code>.contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item {
+    flex: 1;
+    margin: 10px;
+}</code></pre>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; background-color: #f0f0f0; padding: 10px; margin-top: 15px;">
+                        <div style="flex: 1; background-color: #3498db; color: white; text-align: center; margin: 10px; padding: 20px 0;">Item 1</div>
+                        <div style="flex: 1; background-color: #3498db; color: white; text-align: center; margin: 10px; padding: 20px 0;">Item 2</div>
+                        <div style="flex: 1; background-color: #3498db; color: white; text-align: center; margin: 10px; padding: 20px 0;">Item 3</div>
+                    </div>
+                    <p><strong>Ideal para:</strong> Diseños en una sola dimensión, alineación precisa, distribución de espacio.</p>
+                </div>
+                
+                <div id="grid-tab" class="tab-content">
+                    <p>CSS Grid es un sistema bidimensional para crear diseños complejos con filas y columnas:</p>
+                    <div class="code-example">
+                        <pre><code>.contenedor {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-gap: 20px;
+}
+
+.item-a {
+    grid-column: 1 / 3;
+    grid-row: 1;
+}</code></pre>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 2fr 1fr; grid-gap: 10px; background-color: #f0f0f0; padding: 10px; margin-top: 15px;">
+                        <div style="background-color: #3498db; color: white; text-align: center; padding: 30px 0; grid-column: 1 / 3;">Header</div>
+                        <div style="background-color: #2980b9; color: white; text-align: center; padding: 30px 0;">Sidebar</div>
+                        <div style="background-color: #3498db; color: white; text-align: center; padding: 30px 0;">Main</div>
+                        <div style="background-color: #2980b9; color: white; text-align: center; padding: 30px 0;">Footer</div>
+                    </div>
+                    <p><strong>Ideal para:</strong> Diseños complejos bidimensionales, estructuras de página completas.</p>
+                </div>
+            </div>
+            
+            <div class="resource-card">
+                <h4>Recursos adicionales de CSS</h4>
+                <ul>
+                    <li><a href="https://developer.mozilla.org/es/docs/Web/CSS" target="_blank">Documentación CSS en MDN</a> - Referencia completa</li>
+                    <li><a href="https://css-tricks.com/" target="_blank">CSS-Tricks</a> - Tutoriales y consejos avanzados</li>
+                    <li><a href="https://flexboxfroggy.com/" target="_blank">Flexbox Froggy</a> - Juego para aprender Flexbox</li>
+                    <li><a href="https://cssgridgarden.com/" target="_blank">Grid Garden</a> - Juego para aprender CSS Grid</li>
+                    <li><a href="https://caniuse.com/" target="_blank">Can I use</a> - Compatibilidad de características CSS</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="javascript">
+            <h2>JavaScript: Programación para la web</h2>
+            <p>JavaScript es un lenguaje de programación que permite crear contenido dinámico, interactuar con el usuario y manipular el DOM.</p>
+            
+            <h3>Conceptos fundamentales</h3>
+            <ul>
+                <li><strong>Variables:</strong> Almacenan datos (<code>let</code>, <code>const</code>, <code>var</code>)</li>
+                <li><strong>Tipos de datos:</strong> Números, strings, booleanos, objetos, arrays, etc.</li>
+                <li><strong>Operadores:</strong> Aritméticos, comparación, lógicos</li>
+                <li><strong>Estructuras de control:</strong> Condicionales (<code>if</code>, <code>switch</code>), bucles (<code>for</code>, <code>while</code>)</li>
+                <li><strong>Funciones:</strong> Bloques de código reutilizables</li>
+                <li><strong>Objetos:</strong> Colecciones de propiedades y métodos</li>
+                <li><strong>Eventos:</strong> Respuesta a acciones del usuario</li>
+            </ul>
+            
+            <h3>Sintaxis básica</h3>
+            <div class="code-example">
+                <pre><code>// Variables
+let nombre = "Juan";
+const edad = 30;
+
+// Función
+function saludar(persona) {
+    return "Hola, " + persona;
+}
+
+// Condicional
+if (edad >= 18) {
+    console.log("Mayor de edad");
+} else {
+    console.log("Menor de edad");
+}
+
+// Evento
+document.getElementById("boton").addEventListener("click", function() {
+    alert("Botón clickeado!");
+});</code></pre>
+            </div>
+            
+            <h3>Manipulación del DOM</h3>
+            <p>El DOM (Document Object Model) es una representación del documento HTML que JavaScript puede manipular:</p>
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                <thead>
+                    <tr style="background-color: #3498db; color: white;">
+                        <th style="padding: 10px; text-align: left;">Método</th>
+                        <th style="padding: 10px; text-align: left;">Ejemplo</th>
+                        <th style="padding: 10px; text-align: left;">Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;">Seleccionar elemento</td>
+                        <td style="padding: 10px;"><code>document.querySelector('#id')</code></td>
+                        <td style="padding: 10px;">Selecciona el primer elemento que coincida</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;">Seleccionar múltiples</td>
+                        <td style="padding: 10px;"><code>document.querySelectorAll('.clase')</code></td>
+                        <td style="padding: 10px;">Selecciona todos los elementos que coincidan</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;">Cambiar contenido</td>
+                        <td style="padding: 10px;"><code>elemento.textContent = 'texto'</code></td>
+                        <td style="padding: 10px;">Modifica el texto de un elemento</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;">Cambiar HTML</td>
+                        <td style="padding: 10px;"><code>elemento.innerHTML = '&lt;strong&gt;texto&lt;/strong&gt;'</code></td>
+                        <td style="padding: 10px;">Modifica el HTML interno</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;">Cambiar estilos</td>
+                        <td style="padding: 10px;"><code>elemento.style.color = 'red'</code></td>
+                        <td style="padding: 10px;">Modifica estilos CSS</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;">Agregar clase</td>
+                        <td style="padding: 10px;"><code>elemento.classList.add('clase')</code></td>
+                        <td style="padding: 10px;">Añade una clase CSS</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="interactive-demo">
+                <h3>Consola JavaScript interactiva</h3>
+                <p>Prueba estos ejemplos de JavaScript en la consola de tu navegador (F12 > Consola) o escribe tu propio código:</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <h4>Código de ejemplo</h4>
+                        <div class="code-example">
+                            <pre><code>// 1. Mostrar mensaje
+console.log("Hola, mundo!");
+
+// 2. Operaciones matemáticas
+let resultado = 10 + 5 * 2;
+console.log(resultado);
+
+// 3. Manipular DOM
+document.querySelector("#demo-title").textContent = "Nuevo título";
+
+// 4. Cambiar estilos
+document.querySelector("#demo-box").style.backgroundColor = "purple";
+
+// 5. Evento click
+document.querySelector("#demo-btn").addEventListener("click", function() {
+    alert("Botón clickeado!");
+});</code></pre>
+                        </div>
+                    </div>
+                    <div>
+                        <h4>Área de demostración</h4>
+                        <div id="demo-box" style="background-color: #e74c3c; color: white; padding: 20px; border-radius: 5px; margin-bottom: 15px;">
+                            <h3 id="demo-title">Elemento de demostración</h3>
+                            <p>Este elemento puede ser manipulado con JavaScript.</p>
+                        </div>
+                        <button id="demo-btn" style="padding: 10px 15px; background-color: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer;">Prueba este botón</button>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px;">
+                    <h4>Editor JavaScript</h4>
+                    <textarea id="js-editor" style="width: 100%; height: 150px; font-family: monospace; padding: 10px; margin-bottom: 10px;">
+// Escribe tu código JavaScript aquí
+function cambiarColor() {
+    const colores = ['#e74c3c', '#3498db', '#2ecc71', '#f1c40f'];
+    const colorAleatorio = colores[Math.floor(Math.random() * colores.length)];
+    document.getElementById('js-box').style.backgroundColor = colorAleatorio;
+}
+                    </textarea>
+                    <button onclick="executeJsCode()">Ejecutar Código</button>
+                    <div id="js-box" style="width: 100%; height: 100px; background-color: #3498db; margin-top: 15px; display: flex; justify-content: center; align-items: center; color: white; font-weight: bold;">
+                        Este cuadro puede ser modificado con JavaScript
+                    </div>
+                </div>
+            </div>
+            
+            <h3>JavaScript moderno (ES6+)</h3>
+            <p>Las versiones recientes de JavaScript introdujeron importantes mejoras:</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="openTab(event, 'es6-features')">ES6+</button>
+                    <button class="tab-button" onclick="openTab(event, 'async-js')">Async/Await</button>
+                    <button class="tab-button" onclick="openTab(event, 'modules-js')">Módulos</button>
+                </div>
+                
+                <div id="es6-features" class="tab-content active">
+                    <ul>
+                        <li><strong>Let/Const:</strong> <code>let</code> y <code>const</code> en lugar de <code>var</code></li>
+                        <li><strong>Arrow functions:</strong> <code>() => {}</code> Sintaxis más corta para funciones</li>
+                        <li><strong>Template literals:</strong> <code>`Hola ${nombre}`</code> para strings con variables</li>
+                        <li><strong>Destructuring:</strong> <code>const {prop} = objeto</code> para extraer propiedades</li>
+                        <li><strong>Spread operator:</strong> <code>[...array]</code> para copiar arrays/objetos</li>
+                        <li><strong>Classes:</strong> Sintaxis más clara para programación orientada a objetos</li>
+                    </ul>
+                </div>
+                
+                <div id="async-js" class="tab-content">
+                    <p>Manejo moderno de operaciones asíncronas:</p>
+                    <div class="code-example">
+                        <pre><code>// Promesas
+fetch('https://api.ejemplo.com/data')
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+
+// Async/Await (más legible)
+async function obtenerDatos() {
+    try {
+        const response = await fetch('https://api.ejemplo.com/data');
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error(error);
+    }
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div id="modules-js" class="tab-content">
+                    <p>Organización de código en módulos reutilizables:</p>
+                    <div class="code-example">
+                        <pre><code>// math.js
+export function sumar(a, b) {
+    return a + b;
+}
+
+// app.js
+import { sumar } from './math.js';
+console.log(sumar(2, 3)); // 5</code></pre>
+                    </div>
+                    <p><strong>Beneficios:</strong> Código más organizado, reutilizable y mantenible.</p>
+                </div>
+            </div>
+            
+            <div class="resource-card">
+                <h4>Recursos adicionales de JavaScript</h4>
+                <ul>
+                    <li><a href="https://developer.mozilla.org/es/docs/Web/JavaScript" target="_blank">Documentación JavaScript en MDN</a> - Referencia completa</li>
+                    <li><a href="https://javascript.info/" target="_blank">The Modern JavaScript Tutorial</a> - Tutorial actualizado</li>
+                    <li><a href="https://eloquentjavascript.net/" target="_blank">Eloquent JavaScript</a> - Libro gratuito</li>
+                    <li><a href="https://es.javascript.info/" target="_blank">JavaScript.info en español</a> - Tutorial en español</li>
+                    <li><a href="https://github.com/getify/You-Dont-Know-JS" target="_blank">You Don't Know JS</a> - Serie de libros profundos</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="ejercicios">
+            <h2>Ejercicios Prácticos</h2>
+            <p>Pon en práctica lo aprendido con estos ejercicios. Intenta resolverlos por tu cuenta antes de ver las soluciones.</p>
+            
+            <div class="exercise">
+                <h3>Ejercicio 1: Página HTML básica</h3>
+                <p>Crea una página HTML que incluya:</p>
+                <ol>
+                    <li>Estructura HTML5 completa con DOCTYPE, head y body</li>
+                    <li>Un encabezado con tu nombre</li>
+                    <li>Una sección con una breve biografía</li>
+                    <li>Una lista ordenada de tus 3 películas favoritas</li>
+                    <li>Un enlace a tu sitio web favorito</li>
+                    <li>Una imagen relacionada con tus hobbies</li>
+                    <li>Un pie de página con información de copyright</li>
+                </ol>
+                <button onclick="showSolution('html-exercise')">Ver Solución</button>
+                <div id="html-exercise" class="solution" style="display: none; margin-top: 15px;">
+                    <div class="code-example">
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Mi Página Personal&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;María González&lt;/h1&gt;
+    &lt;/header&gt;
+    
+    &lt;main&gt;
+        &lt;section&gt;
+            &lt;h2&gt;Sobre mí&lt;/h2&gt;
+            &lt;p&gt;Soy desarrolladora web frontend con 2 años de experiencia. Me apasiona crear sitios web accesibles y responsivos.&lt;/p&gt;
+        &lt;/section&gt;
+        
+        &lt;section&gt;
+            &lt;h2&gt;Mis películas favoritas&lt;/h2&gt;
+            &lt;ol&gt;
+                &lt;li&gt;El Padrino&lt;/li&gt;
+                &lt;li&gt;Interestelar&lt;/li&gt;
+                &lt;li&gt;Parásitos&lt;/li&gt;
+            &lt;/ol&gt;
+        &lt;/section&gt;
+        
+        &lt;section&gt;
+            &lt;h2&gt;Enlaces favoritos&lt;/h2&gt;
+            &lt;p&gt;Visita &lt;a href="https://developer.mozilla.org" target="_blank"&gt;MDN Web Docs&lt;/a&gt; para aprender desarrollo web.&lt;/p&gt;
+            &lt;img src="hobbies.jpg" alt="Fotografía de mi hobby favorito" width="300"&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+    
+    &lt;footer&gt;
+        &lt;p&gt;&copy; 2023 María González. Todos los derechos reservados.&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="exercise">
+                <h3>Ejercicio 2: Estilizar con CSS</h3>
+                <p>Crea un archivo CSS para dar estilo a la página del ejercicio 1:</p>
+                <ol>
+                    <li>Establece una fuente diferente para los encabezados y el texto normal</li>
+                    <li>Cambia el color de los encabezados h2 a un tono azul</li>
+                    <li>Añade un fondo gris claro al cuerpo de la página</li>
+                    <li>Centra el contenido principal con un ancho máximo de 800px</li>
+                    <li>Estiliza los enlaces para que cambien de color al pasar el mouse</li>
+                    <li>Añade un borde redondeado a la imagen</li>
+                    <li>Estiliza el pie de página con fondo oscuro y texto claro</li>
+                </ol>
+                <button onclick="showSolution('css-exercise')">Ver Solución</button>
+                <div id="css-exercise" class="solution" style="display: none; margin-top: 15px;">
+                    <div class="code-example">
+                        <pre><code>/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Contenedor principal */
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Encabezados */
+h1 {
+    font-family: 'Georgia', serif;
+    color: #2c3e50;
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Georgia', serif;
+    color: #3498db;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+}
+
+/* Enlaces */
+a {
+    color: #2980b9;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #e74c3c;
+    text-decoration: underline;
+}
+
+/* Imagen */
+img {
+    border-radius: 8px;
+    display: block;
+    margin: 15px auto;
+    max-width: 100%;
+}
+
+/* Pie de página */
+footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="exercise">
+                <h3>Ejercicio 3: Añadir interactividad con JavaScript</h3>
+                <p>Añade funcionalidad JavaScript a la página:</p>
+                <ol>
+                    <li>Crea un botón que muestre/oculte la sección de películas</li>
+                    <li>Implementa un contador de visitas que se muestre en el pie de página</li>
+                    <li>Añade un formulario de contacto con validación básica</li>
+                    <li>Crea un reloj en tiempo real que se actualice cada segundo</li>
+                    <li>Implementa un cambio de tema (claro/oscuro)</li>
+                </ol>
+                <button onclick="showSolution('js-exercise')">Ver Solución</button>
+                <div id="js-exercise" class="solution" style="display: none; margin-top: 15px;">
+                    <div class="code-example">
+                        <pre><code>// 1. Botón para mostrar/ocultar películas
+document.getElementById('toggle-movies').addEventListener('click', function() {
+    const moviesSection = document.getElementById('movies-section');
+    if (moviesSection.style.display === 'none') {
+        moviesSection.style.display = 'block';
+        this.textContent = 'Ocultar películas';
+    } else {
+        moviesSection.style.display = 'none';
+        this.textContent = 'Mostrar películas';
+    }
+});
+
+// 2. Contador de visitas (usando localStorage)
+if (!localStorage.visitCount) {
+    localStorage.visitCount = 0;
+}
+localStorage.visitCount++;
+document.getElementById('visit-count').textContent = localStorage.visitCount;
+
+// 3. Validación de formulario
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+    const email = document.getElementById('email').value;
+    if (!email.includes('@')) {
+        e.preventDefault();
+        alert('Por favor ingresa un email válido');
+    }
+});
+
+// 4. Reloj en tiempo real
+function updateClock() {
+    const now = new Date();
+    document.getElementById('clock').textContent = now.toLocaleTimeString();
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// 5. Cambio de tema
+document.getElementById('theme-toggle').addEventListener('click', function() {
+    document.body.classList.toggle('dark-theme');
+    this.textContent = document.body.classList.contains('dark-theme') ? 
+        'Tema claro' : 'Tema oscuro';
+});
+
+/* CSS adicional para el tema oscuro */
+.dark-theme {
+    background-color: #222;
+    color: #eee;
+}
+
+.dark-theme main {
+    background-color: #333;
+    color: #eee;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="exercise">
+                <h3>Ejercicio 4: Proyecto integrador</h3>
+                <p>Crea una página web completa que incluya:</p>
+                <ol>
+                    <li>Estructura semántica HTML5</li>
+                    <li>Diseño responsivo con Flexbox o Grid</li>
+                    <li>Estilos CSS organizados</li>
+                    <li>Interactividad con JavaScript</li>
+                    <li>Un formulario funcional</li>
+                    <li>Efectos de hover/transiciones</li>
+                    <li>Integración con una API pública (como clima o noticias)</li>
+                </ol>
+                <p><strong>Sugerencia:</strong> Podría ser un portafolio personal, un blog o una página de producto.</p>
+                <button onclick="showSolution('project-exercise')">Ver Solución</button>
+                <div id="project-exercise" class="solution" style="display: none; margin-top: 15px;">
+                    <p>Este es un proyecto más complejo que integra todos los conceptos. Aquí hay una estructura básica:</p>
+                    <div class="code-example">
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Mi Portafolio&lt;/title&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+    &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;nav&gt;
+            &lt;div class="logo"&gt;MiPortafolio&lt;/div&gt;
+            &lt;ul class="nav-links"&gt;
+                &lt;li&gt;&lt;a href="#inicio"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#proyectos"&gt;Proyectos&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#contacto"&gt;Contacto&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;button id="theme-toggle"&gt;Tema oscuro&lt;/button&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    
+    &lt;main&gt;
+        &lt;section id="inicio" class="hero"&gt;
+            &lt;div class="hero-content"&gt;
+                &lt;h1&gt;Hola, soy &lt;span class="highlight"&gt;Desarrollador Web&lt;/span&gt;&lt;/h1&gt;
+                &lt;p&gt;Creo experiencias digitales impactantes&lt;/p&gt;
+                &lt;a href="#proyectos" class="btn"&gt;Ver mis trabajos&lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class="hero-image"&gt;
+                &lt;img src="developer.svg" alt="Desarrollador web"&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+        
+        &lt;section id="proyectos"&gt;
+            &lt;h2&gt;Mis Proyectos&lt;/h2&gt;
+            &lt;div class="projects-grid"&gt;
+                &lt;!-- Proyectos cargados dinámicamente con JavaScript --&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+        
+        &lt;section id="contacto"&gt;
+            &lt;h2&gt;Contacto&lt;/h2&gt;
+            &lt;form id="contact-form"&gt;
+                &lt;input type="text" placeholder="Nombre" required&gt;
+                &lt;input type="email" placeholder="Email" required&gt;
+                &lt;textarea placeholder="Mensaje" required&gt;&lt;/textarea&gt;
+                &lt;button type="submit" class="btn"&gt;Enviar&lt;/button&gt;
+            &lt;/form&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+    
+    &lt;footer&gt;
+        &lt;p&gt;© 2023 Mi Portafolio. Visitas: &lt;span id="visit-count"&gt;0&lt;/span&gt;&lt;/p&gt;
+        &lt;div class="social-links"&gt;
+            &lt;a href="#"&gt;&lt;i class="fab fa-github"&gt;&lt;/i&gt;&lt;/a&gt;
+            &lt;a href="#"&gt;&lt;i class="fab fa-linkedin"&gt;&lt;/i&gt;&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/footer&gt;
+    
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                    <p>El archivo JavaScript incluiría la carga de proyectos desde una API, manejo del formulario, cambio de tema y contador de visitas.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="recursos">
+            <h2>Recursos Adicionales</h2>
+            <p>Explora estos recursos para profundizar en el desarrollo web:</p>
+            
+            <div class="resource-card">
+                <h3>Plataformas de aprendizaje</h3>
+                <ul>
+                    <li><a href="https://www.freecodecamp.org/" target="_blank">freeCodeCamp</a> - Cursos gratuitos con certificación</li>
+                    <li><a href="https://www.codecademy.com/" target="_blank">Codecademy</a> - Cursos interactivos</li>
+                    <li><a href="https://platzi.com/" target="_blank">Platzi</a> - Cursos en español</li>
+                    <li><a href="https://www.udemy.com/" target="_blank">Udemy</a> - Cursos completos por demanda</li>
+                </ul>
+            </div>
+            
+            <div class="resource-card">
+                <h3>Herramientas para desarrolladores</h3>
+                <ul>
+                    <li><a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> - Editor de código recomendado</li>
+                    <li><a href="https://codepen.io/" target="_blank">CodePen</a> - Editor online para experimentar</li>
+                    <li><a href="https://github.com/" target="_blank">GitHub</a> - Alojamiento de código y control de versiones</li>
+                    <li><a href="https://www.figma.com/" target="_blank">Figma</a> - Diseño de interfaces</li>
+                </ul>
+            </div>
+            
+            <div class="resource-card">
+                <h3>Comunidades y blogs</h3>
+                <ul>
+                    <li><a href="https://dev.to/" target="_blank">DEV Community</a> - Comunidad de desarrolladores</li>
+                    <li><a href="https://css-tricks.com/" target="_blank">CSS-Tricks</a> - Consejos y trucos de CSS</li>
+                    <li><a href="https://www.smashingmagazine.com/" target="_blank">Smashing Magazine</a> - Artículos sobre desarrollo web</li>
+                    <li><a href="https://stackoverflow.com/" target="_blank">Stack Overflow</a> - Preguntas y respuestas técnicas</li>
+                </ul>
+            </div>
+            
+            <div class="resource-card">
+                <h3>Práctica y desafíos</h3>
+                <ul>
+                    <li><a href="https://frontendmentor.io/" target="_blank">Frontend Mentor</a> - Desafíos de maquetación</li>
+                    <li><a href="https://codewars.com/" target="_blank">Codewars</a> - Desafíos de programación</li>
+                    <li><a href="https://leetcode.com/" target="_blank">LeetCode</a> - Problemas de algoritmos</li>
+                    <li><a href="https://www.codewars.com/" target="_blank">CodeWars</a> - Katas de programación</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <h3>Introducción a HTML, CSS y JavaScript</h3>
+            <p>Objeto Virtual de Aprendizaje - © <span id="current-year">2023</span></p>
+            <p>Creado para fines educativos. Puedes usar y modificar este material libremente.</p>
+            <p><a href="#introduccion">Volver al inicio</a></p>
+        </div>
+    </footer>
+    
+    <script>
+        // Funciones para las pestañas
+        function openTab(evt, tabName) {
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            
+            const tabButtons = document.getElementsByClassName("tab-button");
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+            
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+        
+        // Funcionalidad para HTML
+        function updateHtmlPreview() {
+            const htmlCode = document.getElementById("html-editor").value;
+            const previewFrame = document.getElementById("html-preview");
+            const previewDoc = previewFrame.contentDocument || previewFrame.contentWindow.document;
+            
+            previewDoc.open();
+            previewDoc.write(htmlCode);
+            previewDoc.close();
+        }
+        
+        function showSolution(solutionId) {
+            const solution = document.getElementById(solutionId);
+            solution.style.display = solution.style.display === "block" ? "none" : "block";
+        }
+        
+        // Funcionalidad para CSS
+        function updateCssPreview() {
+            const cssCode = document.getElementById("css-editor").value;
+            const styleElement = document.createElement("style");
+            styleElement.innerHTML = "#css-box {" + cssCode + "}";
+            
+            const oldStyle = document.getElementById("dynamic-style");
+            if (oldStyle) {
+                oldStyle.remove();
+            }
+            
+            styleElement.id = "dynamic-style";
+            document.head.appendChild(styleElement);
+        }
+        
+        function addCssEffect(effectType) {
+            let cssCode = "";
+            
+            switch(effectType) {
+                case 'hover':
+                    cssCode = `#css-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    cursor: pointer;
+}`;
+                    break;
+                    
+                case 'transform':
+                    cssCode = `#css-box {
+    transform: rotate(5deg);
+}`;
+                    break;
+                    
+                case 'animation':
+                    cssCode = `@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+#css-box {
+    animation: pulse 2s infinite;
+}`;
+                    break;
+            }
+            
+            const styleElement = document.createElement("style");
+            styleElement.innerHTML = cssCode;
+            styleElement.id = "effect-style";
+            
+            const oldEffect = document.getElementById("effect-style");
+            if (oldEffect) {
+                oldEffect.remove();
+            }
+            
+            document.head.appendChild(styleElement);
+        }
+        
+        // Funcionalidad para JavaScript
+        function executeJsCode() {
+            const jsCode = document.getElementById("js-editor").value;
+            try {
+                // Crear una nueva función con el código y ejecutarla
+                new Function(jsCode)();
+            } catch (error) {
+                console.error("Error ejecutando el código:", error);
+                alert("Hubo un error al ejecutar el código: " + error.message);
+            }
+        }
+        
+        // Funcionalidad del reloj
+        function updateClock() {
+            const now = new Date();
+            document.getElementById("clock").textContent = now.toLocaleTimeString();
+        }
+        
+        // Inicialización al cargar la página
+        document.addEventListener("DOMContentLoaded", function() {
+            // Actualizar el año en el footer
+            document.getElementById("current-year").textContent = new Date().getFullYear();
+            
+            // Inicializar el preview de HTML
+            updateHtmlPreview();
+            updateCssPreview();
+            
+            // Configurar el botón de cambio de color
+            const colorBtn = document.getElementById("color-changer");
+            const colorBox = document.getElementById("color-box");
+            
+            if (colorBtn && colorBox) {
+                colorBtn.addEventListener("click", function() {
+                    const colors = ['#e74c3c', '#3498db', '#2ecc71', '#f1c40f', '#9b59b6', '#1abc9c'];
+                    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                    colorBox.style.backgroundColor = randomColor;
+                });
+            }
+            
+            // Configurar el botón de saludo
+            const greetBtn = document.getElementById("greet-btn");
+            const nameInput = document.getElementById("name-input");
+            const greetingOutput = document.getElementById("greeting-output");
+            
+            if (greetBtn && nameInput && greetingOutput) {
+                greetBtn.addEventListener("click", function() {
+                    const name = nameInput.value.trim();
+                    if (name) {
+                        greetingOutput.textContent = `¡Hola, ${name}! Bienvenido/a al mundo del desarrollo web.`;
+                    } else {
+                        greetingOutput.textContent = "Por favor, escribe tu nombre.";
+                    }
+                });
+            }
+            
+            // Configurar el botón de demostración
+            const demoBtn = document.getElementById("demo-btn");
+            if (demoBtn) {
+                demoBtn.addEventListener("click", function() {
+                    alert("¡Has clickeado el botón de demostración!");
+                });
+            }
+            
+            // Iniciar el reloj
+            setInterval(updateClock, 1000);
+            updateClock();
+        });
+    </script>
+</body>
+</html>
